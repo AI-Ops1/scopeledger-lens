@@ -1,5 +1,7 @@
 # ScopeLedger Lens
 
+**[Use the live app](https://scopeledger-lens.netlify.app/)** · [How it works](https://scopeledger-lens.netlify.app/how-it-works)
+
 **A free, open-source AI scope check for construction project managers and general contractors.**
 
 Compare the agreed scope with a new instruction. Find potential extra work, apparently covered items and missing context. Every finding must quote the text you supplied.
@@ -59,7 +61,7 @@ Copy `.env.example` to `.env`, set `OPENAI_API_KEY`, and restart. Keep the key p
 
 The optional server flow handles refusals, incomplete results, timeouts and provider errors. Limits allow one request at a time, one per address per minute and 30 per UTC day by default. Failed requests count. Limits reset on restart and are per process; they are not durable billing controls.
 
-The server binds to localhost. A non-loopback host requires `APP_ACCESS_TOKEN`. Use HTTPS for remote access. Before a public hosted-AI launch, add durable abuse and spend controls and an appropriate privacy notice. **This repository is public source code, not a deployed service.**
+The server binds to localhost. A non-loopback host requires `APP_ACCESS_TOKEN`. Use HTTPS for remote access. Before a public hosted-AI launch, add durable abuse and spend controls and an appropriate privacy notice. The public Netlify site uses the static own-AI flow. The optional hosted OpenAI flow is for separately configured server deployments.
 
 Set `REVIEW_URL` to a real HTTPS contact page to offer a human review link. Otherwise Lens downloads a review request and makes clear that it has not submitted anything.
 
@@ -87,7 +89,7 @@ Before relying on the app on live projects, evaluate authorised or synthetic exa
 
 ## Brand and licence
 
-ScopeLedger Lens is a working product name. The editable SL monogram in `public/logo.svg` uses deep green and lime; it is a related concept, not a verified match to an existing logo. No trademark clearance is claimed.
+ScopeLedger Lens is a working product name. The editable SL monogram in `public/logo.svg` uses ScopeLedger navy and copper; it is a related concept, not a verified match to an existing logo. No trademark clearance is claimed.
 
 MIT licence. Built by [AI-Ops1](https://github.com/AI-Ops1).
 
@@ -96,3 +98,9 @@ Technical references: [Structured Outputs](https://developers.openai.com/api/doc
 ## Deadline calculator and agent skill
 
 The main menu links to [the live calculator](https://ai-ops1.github.io/scopeledger-notice-calculator/). How it works includes its calendar-day method, [Chrome extension](https://chromewebstore.google.com/detail/notice-deadline-calculato/bncibbamfhacacpbnnfbhlkkooeedgnj) and [downloadable agent skill](https://github.com/AI-Ops1/scopeledger-notice-calculator/releases/latest/download/notice-deadline-calculator-skill.zip).
+
+## Netlify hosting
+
+The live app is hosted as static files. It does not depend on a local computer or an always-running Node server. No server API key is deployed. Netlify account limits and service availability apply.
+
+Run npm run build to generate dist. Netlify uses netlify.toml, which publishes only the static file list and supplies security headers and the How it works/config routes. The hosted API option is removed from the public build.

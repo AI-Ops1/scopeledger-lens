@@ -92,3 +92,7 @@ ScopeLedger Lens is a working product name. The editable SL monogram in `public/
 MIT licence. Built by [AI-Ops1](https://github.com/AI-Ops1).
 
 Technical references: [Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs), [OpenAI data controls](https://developers.openai.com/api/docs/guides/your-data).
+
+## Deadline calculator and agent skill
+
+The main menu links to [the live calculator](https://ai-ops1.github.io/scopeledger-notice-calculator/). How it works includes its calendar-day method, [Chrome extension](https://chromewebstore.google.com/detail/notice-deadline-calculato/bncibbamfhacacpbnnfbhlkkooeedgnj) and [downloadable agent skill](https://github.com/AI-Ops1/scopeledger-notice-calculator/releases/latest/download/notice-deadline-calculator-skill.zip).

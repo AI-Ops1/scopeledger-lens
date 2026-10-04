@@ -10,3 +10,5 @@ label{display:block;font-size:14px;font-weight:600;margin-bottom:10px}.optional{
 
 select { width:100%; padding:12px; margin:8px 0 18px; border:1px solid #cbd4cd; border-radius:8px; background:white; color:#173b2e; font:inherit; }
 #handoff p { line-height:1.6; } #handoff h3 { margin-top:24px; } #handoff textarea { width:100%; } .guide { max-width:780px; margin:auto; } .guide li { margin:18px 0; line-height:1.7; } .guide h2 { margin-top:32px; }
+
+.topbar { flex-wrap:wrap; gap:16px; }

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ScopeLedger Lens · AI scope review</title>
+  <meta name="description" content="Compare a construction scope with a new instruction. AI flags potential extra work and cites the exact wording for your review.">
+  <link rel="icon" href="/logo.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css">
+  <script src="/app.js" type="module"></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="/" aria-label="ScopeLedger Lens home"><img src="/logo.svg" alt="" width="44" height="44"><span>ScopeLedger <strong>Lens</strong><small>AI SCOPE REVIEW</small></span></a><a href="/how-it-works" class="text-button">How it works</a><span class="beta">FREE BETA <span class="dot"></span></span></header>
+  <main>
+    <section class="intro"><div><p class="eyebrow">FOR PROJECT MANAGERS & GENERAL CONTRACTORS</p><h1>New instruction.<br><span>Same scope?</span></h1><p class="lede">Let AI compare the wording before extra work gets overlooked.</p></div><div class="intro-note"><span class="scan-icon" aria-hidden="true">⌕</span><p><strong>Evidence, not guesswork.</strong><br>Every finding cites your text.<br>You make the final call.</p></div></section>
+    <div class="workspace">
+      <section class="input-panel" aria-labelledby="input-title">
+        <div class="panel-heading"><h2 id="input-title">Check an instruction</h2><button type="button" id="load-example" class="text-button">Try an example ↗</button></div>
+        <form id="check-form"><label for="ai-mode">Choose your AI option</label><select id="ai-mode"><option value="own">Use your own AI · no API key</option><option value="hosted">Use the app AI · if connected</option></select>
+          <label for="project">Project reference <span class="optional">optional</span></label><input id="project" name="project" maxlength="100" placeholder="e.g. Riverside · Electrical package" autocomplete="off">
+          <div class="field-heading"><label for="scope"><span class="step">01</span> Agreed scope</label><span id="scope-count" class="count">0 / 20,000</span></div>
+          <textarea id="scope" name="scope" rows="7" minlength="30" maxlength="20000" required placeholder="Paste the relevant scope clauses, inclusions and exclusions. Include revision references where possible."></textarea>
+          <div class="field-heading"><label for="instruction"><span class="step">02</span> New instruction</label><span id="instruction-count" class="count">0 / 8,000</span></div>
+          <textarea id="instruction" name="instruction" rows="4" minlength="15" maxlength="8000" required placeholder="Paste the email, site instruction or requested change. Keep the original wording."></textarea>
+          <details class="context"><summary>Add contract or project context <span>optional</span></summary><label for="context" class="sr-only">Additional context</label><textarea id="context" name="context" rows="3" maxlength="4000" placeholder="Relevant notice terms, approved changes, dates or drawing revisions. The AI will not assume missing terms."></textarea></details>
+          <div id="access-wrap" hidden><label for="access">Beta access code</label><input id="access" type="password" autocomplete="off" maxlength="200" placeholder="From the app owner"></div>
+          <label class="consent"><input id="consent" type="checkbox" required><span>I may share this text with my chosen AI provider. I have removed sensitive details that are not needed.</span></label>
+          <button id="analyze" class="primary" type="submit"><span aria-hidden="true">✦</span> Prepare my AI prompt <span class="arrow" aria-hidden="true">→</span></button>
+          <p id="privacy" class="privacy">This option prepares a prompt in your browser. You choose what to share with your AI. Its privacy rules apply.</p>
+          <p id="connection" class="connection" role="status">Checking AI connection…</p>
+          <p id="error" class="error" role="alert" hidden></p>
+        </form>
+<section id="handoff" class="result-section" hidden><h3>1. Copy your prompt</h3><p>Open your AI in another tab. Sign in there. Paste this prompt and send it.</p><label for="ai-prompt">Your review prompt</label><textarea id="ai-prompt" rows="6" readonly></textarea><button id="copy-prompt" type="button" class="secondary">Copy prompt</button><p id="prompt-status" role="status" class="micro"></p><p><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">Open ChatGPT ↗</a> · <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Open Claude ↗</a></p><h3>2. Paste the AI answer</h3><p>Copy the whole JSON answer. Paste it below. Lens will check each quote against your text.</p><label for="ai-reply">AI answer</label><textarea id="ai-reply" rows="7" maxlength="60000" placeholder="Paste the full JSON answer here."></textarea><button id="import-reply" type="button" class="primary">Check quotes and show review →</button><p id="import-error" role="alert" class="error" hidden></p></section>
+      </section>
+      <section class="result-panel" aria-labelledby="result-title">
+        <div class="panel-heading"><h2 id="result-title">Your review</h2><span class="tag">SOURCE-CHECKED QUOTES</span></div>
+        <div id="empty" class="empty"><div class="paper-mark" aria-hidden="true"><span></span><span></span><span></span><b>↗</b></div><h3>A clearer view of the change.</h3><p>Compare the agreed work with what’s being asked now. Your review will separate potential extras, covered items and missing context.</p><div class="result-legend"><span><i class="amber"></i>Potential extra</span><span><i class="green"></i>Appears covered</span><span><i class="gray"></i>Needs context</span></div><button id="preview-example" class="secondary" type="button">See a sample review →</button><p class="micro">Illustrative sample. No AI call or data sharing.</p></div>
+        <div id="loading" class="loading" role="status" hidden><span class="spinner"></span><h3>AI is comparing your excerpts.</h3><p>Then we’ll verify that every cited quote matches your text.</p></div>
+        <div id="result" hidden>
+          <div id="sample-banner" class="sample-banner" hidden>ILLUSTRATIVE SAMPLE · PREWRITTEN, NOT A LIVE AI RESULT</div>
+          <div class="verdict"><span id="verdict-label" class="verdict-label"></span><h3 id="summary"></h3><p id="result-meta" class="micro"></p></div>
+          <div id="findings"></div>
+          <section id="missing-section" class="result-section"><h3>What still needs checking</h3><ul id="missing"></ul></section>
+          <section class="result-section"><h3>Before you proceed</h3><ol id="next-steps"></ol></section>
+          <section class="draft-section"><h3>Clarification draft</h3><p>Review the finding before using this message.</p><label class="consent"><input type="checkbox" id="reviewed"><span>I’ve reviewed the findings against the complete project documents.</span></label><pre id="draft"></pre><div class="actions"><button id="copy-draft" class="secondary" type="button" disabled>Copy draft</button><button id="download" class="text-button" type="button">Download review ↓</button></div><span id="copy-status" role="status" class="micro"></span></section>
+          <p class="result-disclaimer">Preliminary review of supplied excerpts only. Verified quotes do not prove the AI’s interpretation is correct. No finding establishes entitlement, approval, price or a notice deadline.</p>
+          <div class="review-cta"><div><strong>Want a second pair of eyes?</strong><p>Prepare this review for a free exposure review with ScopeLedger.</p></div><a id="review-link" class="secondary" hidden target="_blank" rel="noopener noreferrer">Request a free review ↗</a><button id="prepare-review" class="secondary" type="button">Prepare review request →</button><p id="review-note" class="micro" hidden>Your request has been downloaded. Share it through the ScopeLedger contact you already use. No request has been submitted.</p></div>
+        </div>
+      </section>
+    </div>
+    <footer><span>ScopeLedger Lens <span class="footer-dot">/</span> See the change. Keep the record.</span><button id="clear" class="text-button" type="button">Clear this session</button></footer>
+  </main>
+  <template id="finding-template"><article class="finding"><div class="finding-heading"><span class="finding-number"></span><h3></h3><span class="finding-state"></span></div><p class="finding-explanation"></p><div class="quotes"><div><h4>AGREED SCOPE</h4><blockquote class="scope-quote"></blockquote></div><div><h4>NEW INSTRUCTION</h4><blockquote class="instruction-quote"></blockquote></div></div><p class="finding-question"></p></article></template>
+</body>
+</html>
